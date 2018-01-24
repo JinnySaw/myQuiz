@@ -1,0 +1,4 @@
+com/jinnysaw/myQuiz/controllers/QuizController.class
+com/jinnysaw/myQuiz/models/Quiz.class
+com/jinnysaw/myQuiz/MyQuizApplication.class
+com/jinnysaw/myQuiz/repositories/QuizRepository.class
