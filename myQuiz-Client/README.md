@@ -25,3 +25,26 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+1. ng new ProjectName
+2. cd ProjectName
+3. npm install bootstrap@4.0.0-alpha.6 tether jquery --save
+4. After installation finished change remove ^ from bootstrap package.json
+5. After that run npm install again 
+6. Go to angular-cli.json file and find styles, Insert this "../node_modules/bootstrap/dist/css/bootstrap.css"
+7. After that find scripts and add these three ""../node_modules/jquery/dist/jquery.js",
+        "../node_modules/tether/dist/js/tether.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js"
+
+8. Create components 
+    - ng g component components/quiz-list
+    - ng g component components/dashboard
+    - ng g component components/addQuiz
+    - ng g component components/editQuiz
+    - ng g component components/navbar
+    - ng g component components/sidebar
+    - ng g component components/login
+    - ng g component components/register
+    - ng g component components/settings
+    - ng g component components/pageNotFound
