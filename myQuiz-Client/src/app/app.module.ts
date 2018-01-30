@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
@@ -13,6 +14,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
+// Services
+import { QuizService } from './services/quiz';
 
 const appRoutes: Routes=[
   {path:'',component:DashboardComponent},
@@ -37,9 +41,12 @@ const appRoutes: Routes=[
   imports: [
     BrowserModule,
     // import RouterModule and parse in our appRoute
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpModule
   ],
-  providers: [],
+  providers: [
+    QuizService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -53,5 +53,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   {path:'register',component:RegisterComponent},
   {path:'login',component: LoginComponent} ]; above @NgModule
 11. Inside the imports:[] add new this RouterModule.forRoot(appRoutes)
-12. Go to https://v4-alpha.getbootstrap.com/ and search navbar and copy and paste to navbar.component.html
+12. Go to https://v4-alpha.getbootstrap.com/ and search navbar, copy and paste to navbar.component.html
 13. insert <app-navbar></app-navbar> to first line of app.component.html
+14. Create models Folder under app Folder
+15. Create quiz.ts File under models Folder
+16. ng g service services/quiz
+17. import "import { QuizService } from './services/quiz';" and add QuizService to "provider:[]," at app.module.ts file 
+18. install fontawesome "npm install font-awesome --save"
+19. add "../node_modules/font-awesome/css/font-awesome.css", above bootstarp to the Style:[] of .angular-cli.json file

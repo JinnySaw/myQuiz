@@ -1,3 +1,38 @@
-<p>
-  quiz-list works!
-</p>
+<div class="row">
+  <div class="col-md-10">
+    <h2>
+      <i class="fa fa-question-circle"></i> Quizzes</h2>
+  </div>
+  <div class="col-md-2">
+      <a href="#" routerLink="/add-Quiz" class="btn btn-success btn-block">Add New</a>
+        <!-- <i class="fa fa-plus"></i> -->
+  </div>
+</div>
+<table *ngIf="quizzes?.length >0 ; else noQuizzes" class="table table-striped">
+  <thead class="thead-inverse">
+   <tr>
+   <th>No</th>
+     <th>Title</th>
+     <th>Description</th>
+     <th>Created Date</th>
+     <th>Updated Date</th>
+     <th></th>
+   </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let quiz of quizzes">
+      <td>{{ quiz.id }}</td>
+      <td>{{ quiz.title }}</td>
+      <td>{{ quiz.description }}</td>
+      <td>{{ quiz.created_at}}</td>
+      <td>{{ quiz.updated_at }}</td>
+      <td> <a [routerLink]="['/quiz/'+quiz.id]" href="" class="btn btn-secondary sm">
+      <i class="fa fa-arrow-circle-o-right"></i> Details
+      </a> </td>
+    </tr>
+  </tbody>
+</table>
+<ng-template #noQuizzes>
+  <hr>
+  <h5>There are no Quizzes in this system</h5>
+</ng-template>
