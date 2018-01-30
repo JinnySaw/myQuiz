@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
@@ -13,6 +13,12 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
+const appRoutes: Routes=[
+  {path:'',component:DashboardComponent},
+  {path:'register',component:RegisterComponent},
+  {path:'login',component:LoginComponent},
+]
 
 @NgModule({
   declarations: [
@@ -29,7 +35,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     PageNotFoundComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    // import RouterModule and parse in our appRoute
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

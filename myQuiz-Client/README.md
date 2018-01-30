@@ -36,7 +36,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 7. After that find scripts and add these three ""../node_modules/jquery/dist/jquery.js",
         "../node_modules/tether/dist/js/tether.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js"
-
 8. Create components 
     - ng g component components/quiz-list
     - ng g component components/dashboard
@@ -48,3 +47,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     - ng g component components/register
     - ng g component components/settings
     - ng g component components/pageNotFound
+9. import { RouterModule, Routes} from ‘@angular/router’; to app.modules.ts
+10. Declare these const appRoutes: Routes =[
+  {path:'', component: DashboardComponent},
+  {path:'register',component:RegisterComponent},
+  {path:'login',component: LoginComponent} ]; above @NgModule
+11. Inside the imports:[] add new this RouterModule.forRoot(appRoutes)
