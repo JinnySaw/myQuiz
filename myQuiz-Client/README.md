@@ -53,3 +53,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   {path:'register',component:RegisterComponent},
   {path:'login',component: LoginComponent} ]; above @NgModule
 11. Inside the imports:[] add new this RouterModule.forRoot(appRoutes)
+12. Go to https://v4-alpha.getbootstrap.com/ and search navbar and copy and paste to navbar.component.html
+13. insert <app-navbar></app-navbar> to first line of app.component.html
