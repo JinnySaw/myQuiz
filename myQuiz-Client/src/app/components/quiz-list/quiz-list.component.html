@@ -1,17 +1,18 @@
-<div class="row">
+ <!-- <div class="row">
   <div class="col-md-10">
     <h2>
       <i class="fa fa-question-circle"></i> Quizzes</h2>
   </div>
   <div class="col-md-2">
-      <a href="#" routerLink="/add-Quiz" class="btn btn-success btn-block">Add New</a>
-        <!-- <i class="fa fa-plus"></i> -->
+      <a href="#" routerLink="/add-Quiz" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i> Add New</a>
+      
   </div>
 </div>
+<div class="table-responsive">
 <table *ngIf="quizzes?.length >0 ; else noQuizzes" class="table table-striped">
   <thead class="thead-inverse">
    <tr>
-   <th>No</th>
+    <th>No</th>
      <th>Title</th>
      <th>Description</th>
      <th>Created Date</th>
@@ -26,13 +27,79 @@
       <td>{{ quiz.description }}</td>
       <td>{{ quiz.created_at}}</td>
       <td>{{ quiz.updated_at }}</td>
-      <td> <a [routerLink]="['/quiz/'+quiz.id]" href="" class="btn btn-secondary sm">
-      <i class="fa fa-arrow-circle-o-right"></i> Details
-      </a> </td>
+      <td> 
+        
+         
+      <div class="btn-group pull-right">
+          <a [routerLink]="['/edit-quiz/'+ quiz.id]" class="btn btn-secondary"><i class="fa fa-pencil-square-o"></i></a>
+          <button type="button" class="btn btn-danger" (click)="onDeleteClick(quiz.id)"><i class="fa 
+            Search Results
+            fa-trash-o"></i></button>
+            <a [routerLink]="['/quiz/'+quiz.id]" href="" class="btn btn-secondary sm">
+              <i class="fa fa-arrow-circle-o-right"></i> Details
+              </a>
+        </div>
+    </td>
     </tr>
   </tbody>
 </table>
+</div>
 <ng-template #noQuizzes>
   <hr>
   <h5>There are no Quizzes in this system</h5>
-</ng-template>
+</ng-template>  -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <section>
+        <header class="header">
+          <div class="row">
+            <div class="col-sm-10">
+              <h1>Quizzes</h1>
+            </div>
+            
+            <div class="col-sm-2">
+             
+              <a href="#" routerLink="/add-quiz" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add New</a>
+            </div>
+          </div>
+ 
+        </header>
+      </section>
+ 
+      <section class="main">
+ 
+        <table class="table">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let quiz of quizzes">
+            <th scope="row">{{quiz.id}}</th>
+            <td>{{quiz.title}}</td>
+            <td>{{quiz.description}}</td>
+            <td>
+              <div class="btn-group pull-right">
+                  <a [routerLink]="['/quiz/'+quiz.id]" href="" class="btn btn-secondary sm">
+                    <i class="fa fa-arrow-circle-o-right"></i> Details
+                    </a>
+                  <a [routerLink]="['/edit-quiz/'+ quiz.id]" class="btn btn-secondary"><i class="fa fa-pencil-square-o"></i></a>
+                  <button type="button" class="btn btn-danger" (click)="onDeleteClick(quiz.id)"><i class="fa 
+                    Search Results
+                    fa-trash-o"></i></button>
+                </div>
+            </td>
+          </tr>
+ 
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { FormsModule} from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { AppComponent } from './app.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
@@ -16,12 +18,14 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 // Services
-import { QuizService } from './services/quiz';
+import { QuizService } from './services/quiz.service';
 
 const appRoutes: Routes=[
   {path:'',component:DashboardComponent},
   {path:'register',component:RegisterComponent},
   {path:'login',component:LoginComponent},
+  {path:'add-quiz', component: AddQuizComponent},
+  {path:'edit-quiz/:id',component:EditQuizComponent}
 ]
 
 @NgModule({
@@ -42,7 +46,9 @@ const appRoutes: Routes=[
     BrowserModule,
     // import RouterModule and parse in our appRoute
     RouterModule.forRoot(appRoutes),
-    HttpModule
+    HttpModule,
+    FormsModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [
     QuizService
