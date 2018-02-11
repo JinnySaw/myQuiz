@@ -19,8 +19,13 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 
 // Services
 import { QuizService } from './services/quiz.service';
+import {LoginService} from './services/login.service';
 
 const appRoutes: Routes=[
+  // {path:'',
+  // redirectTo: 'login',
+  // pathMatch: 'full'
+  // },
   {path:'',component:DashboardComponent},
   {path:'register',component:RegisterComponent},
   {path:'login',component:LoginComponent},
@@ -51,7 +56,8 @@ const appRoutes: Routes=[
     FlashMessagesModule.forRoot()
   ],
   providers: [
-    QuizService
+    QuizService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
