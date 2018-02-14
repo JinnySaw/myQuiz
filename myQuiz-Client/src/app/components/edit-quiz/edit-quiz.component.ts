@@ -12,17 +12,13 @@ import 'rxjs/add/operator/toPromise';
 })
 export class EditQuizComponent implements OnInit {
 
-  id: number;
-  quiz : Quiz = {
-    id:null,
-    title:'',
-    description:'',
-    create_at:'',
-    updated_at:''
-  }
-  constructor(public flashMessagesService:FlashMessagesService,
-    public router:Router,public quizService:QuizService,
-  public route: ActivatedRoute
+  private id: number;
+  private quiz: Quiz = new Quiz();
+  private quizUpdated: boolean;
+
+  constructor(private flashMessagesService:FlashMessagesService,
+    private router:Router,public quizService:QuizService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -31,6 +27,7 @@ export class EditQuizComponent implements OnInit {
     this.quizService.getQuizById(this.id).then(quiz=>{
       this.quiz = quiz;
     })
+    
   }
   onSubmit({value,valid}:{value:Quiz,valid:boolean}){
     var flashMessagesService = this.flashMessagesService;
@@ -43,9 +40,8 @@ export class EditQuizComponent implements OnInit {
     else{
       this.quizService.updateQuiz(this.id,value);
        this.flashMessagesService.show('Quiz Updated',{cssClass:'alert-success',timeout:4000});
-      // console.log('updated');
       
-      this.router.navigate(['/']);
+      this.router.navigate(['/quiz']);
     }
 
   }

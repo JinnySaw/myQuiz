@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { AppComponent } from './app.component';
@@ -19,18 +19,31 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 
 // Services
 import { QuizService } from './services/quiz.service';
-import {LoginService} from './services/login.service';
+import { LoginService } from './services/login.service';
+import { SchoolService } from './services/school.service';
 
-const appRoutes: Routes=[
-  // {path:'',
-  // redirectTo: 'login',
-  // pathMatch: 'full'
-  // },
-  {path:'',component:DashboardComponent},
-  {path:'register',component:RegisterComponent},
-  {path:'login',component:LoginComponent},
-  {path:'add-quiz', component: AddQuizComponent},
-  {path:'edit-quiz/:id',component:EditQuizComponent}
+import { SchoolsComponent } from './components/schools/schools.component';
+import { AddSchoolComponent } from './components/add-school/add-school.component';
+import { EditSchoolComponent } from './components/edit-school/edit-school.component'; 
+
+const appRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  // School
+  { path: 'school', component: SchoolsComponent},
+  { path: 'add-school',component: AddSchoolComponent},
+  { path: 'edit-school/:id', component: EditSchoolComponent}, 
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+
+  // Quiz
+  { path: 'quiz', component: QuizListComponent },
+  { path: 'add-quiz', component: AddQuizComponent },
+  { path: 'edit-quiz/:id', component: EditQuizComponent }
 ]
 
 @NgModule({
@@ -46,6 +59,9 @@ const appRoutes: Routes=[
     RegisterComponent,
     SettingsComponent,
     PageNotFoundComponent,
+    SchoolsComponent,
+    AddSchoolComponent,
+    EditSchoolComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +73,8 @@ const appRoutes: Routes=[
   ],
   providers: [
     QuizService,
-    LoginService
+    LoginService,
+    SchoolService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,17 +1,17 @@
 <div class="container">
-  <div [hidden]="quizList">
+  <div >
     <div class="row">
       <div class="col-sm-12">
         <section>
           <header class="header">
             <div class="row">
               <div class="col-sm-10">
-                <h1>Quizzes</h1>
+                <h1>Schools</h1>
               </div>
 
               <div class="col-sm-2">
 
-                <a  routerLink="/add-quiz" class="btn btn-primary pull-right">
+                <a  routerLink="/add-school" class="btn btn-primary pull-right">
                   <i class="fa fa-plus"></i> Add New</a>
               </div>
             </div>
@@ -25,25 +25,24 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Title</th>
-                <th>Description</th>
+                <th>School</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let quiz of quizzes | async">
-                <th scope="row">{{ quiz.id }}</th>
-                <td>{{ quiz.title }}</td>
-                <td>{{ quiz.description }}</td>
+              <tr *ngFor="let school of schools | async">
+                <th scope="row">{{ school.id }}</th>
+                <td>{{ school.schoolname }}</td>
                 <td>
                   <div class="btn-group pull-right">
-                    <a [routerLink]="['/quiz/'+quiz.id]"   class="btn btn-secondary sm">
+                    <!-- <a [routerLink]="['/school/'+school.id]"   class="btn btn-secondary sm">
                       <i class="fa fa-arrow-circle-o-right"></i> Details
-                    </a>
-                    <a [routerLink]="['/edit-quiz/'+ quiz.id]" class="btn btn-secondary">
+                    </a> -->
+                    <a 
+                    [routerLink]="['/edit-school/'+ school.id]" class="btn btn-secondary">
                       <i class="fa fa-pencil-square-o"></i>
                     </a>
-                    <button type="button" class="btn btn-danger" (click)="onDeleteClick(quiz.id)">
+                    <button type="button" class="btn btn-danger" (click)="onDeleteClick(school.id)">
                       <i class="fa 
                     Search Results
                     fa-trash-o"></i>

@@ -13,13 +13,6 @@ import 'rxjs/add/operator/toPromise';
 export class AddQuizComponent implements OnInit {
 
   quiz = new Quiz;
-  // quiz : Quiz = {
-  //   id:null,
-  //   title:'',
-  //   description:'',
-  //   create_at:'',
-  //   updated_at:''
-  // }
   constructor(public flashMessagesService:FlashMessagesService,
     public router:Router,public quizService:QuizService,
     ) { }
@@ -29,7 +22,7 @@ export class AddQuizComponent implements OnInit {
 
   onSubmit({value,valid}:{value:Quiz,valid:boolean}){
     if(!valid){
-      console.log('onSubmit error');
+      // console.log('onSubmit error');
       
       this.flashMessagesService.show('Please fill the Title',{cssClass:'alert-danger', timeout:4000});
       this.router.navigate(['add-quiz']);
@@ -37,9 +30,10 @@ export class AddQuizComponent implements OnInit {
     else{
      // console.log('onSubmit save');
       
-      this.quizService.newQuiz(value);
+      this.quizService.newQuiz(value); 
       this.flashMessagesService.show('New Quiz Added',{cssClass:'alert-success',timeout:4000});
-      this.router.navigate(['/']);
+     
+      this.router.navigate(['/quiz']);
     }
 
   }
