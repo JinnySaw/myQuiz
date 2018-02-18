@@ -8,6 +8,7 @@ import { School } from '../../models/school';
 import {SchoolService } from '../../services/school.service';
 import { Observable } from 'rxjs/Observable';
 import { Academic} from '../../models/academic';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-edit-academic',
@@ -15,6 +16,7 @@ import { Academic} from '../../models/academic';
   styleUrls: ['./edit-academic.component.css']
 })
 export class EditAcademicComponent implements OnInit {
+  private loggedIn = false;
   private id: number;
   private academicYear : AcademicYear={
     id:0,
@@ -30,9 +32,11 @@ export class EditAcademicComponent implements OnInit {
   constructor(public flashMessagesService: FlashMessagesService,
     public router: Router, public academicService: AcademicyearService,
     public schoolService: SchoolService,
-    private route: ActivatedRoute) { } 
+    private route: ActivatedRoute,
+    private loginService: LoginService) { } 
   result : any;
   ngOnInit() {
+    this.checkSession();
     this.getAllSchools();
     this.id = this.route.snapshot.params['id'];
 
@@ -46,11 +50,19 @@ export class EditAcademicComponent implements OnInit {
      this.academicYear.id = this.academic.id;
      this.academicYear.year = this.academic.year;
      this.academicYear.school_id = this.academic.school.id;
-    // console.log(this.academic); 
-    // console.log(this.school);
+     
     }); 
- 
-    // console.log(this.school);
+  
+  }
+  checkSession(){
+    this.loginService.checkSession().subscribe(
+      result => {
+        this.loggedIn = true;
+      },
+      error => {
+        this.loggedIn = false;
+      }
+    );
   }
   getAllSchools() {
     this.schools = this.schoolService.getAllSchool();

@@ -10,8 +10,11 @@ import { Academic} from '../models/academic';
 
 @Injectable()
 export class AcademicyearService {
-  private apiUrl = AppConst.serverPath + 'academic';
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private apiUrl = AppConst.serverApiPath + 'academic';
+  private headers = new Headers({ 
+    'Content-Type': 'application/json',
+    'x-auth-token': localStorage.getItem("xAuthToken")
+  });
   private options = { headers: this.headers };
 
   constructor(private http: Http) { }
@@ -44,6 +47,8 @@ export class AcademicyearService {
       .catch(this.handleError);
   }
   newAcademic(AcademicYear: AcademicYear): Promise<AcademicYear> { 
+   
+    let tokenHeader = new Headers()
     return this.http.post(this.apiUrl+'?schoolId='+AcademicYear.school_id, JSON.stringify(
       
       AcademicYear 

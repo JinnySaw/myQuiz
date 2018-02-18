@@ -4,21 +4,35 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { SchoolService } from '../../services/school.service';
 import 'rxjs/add/operator/toPromise';
+import { LoginService } from '../../services/login.service';
+
 @Component({
   selector: 'app-add-school',
   templateUrl: './add-school.component.html',
   styleUrls: ['./add-school.component.css']
 })
 export class AddSchoolComponent implements OnInit {
-
+  private loggedIn = false;
   school = new School;
   constructor(public flashMessagesService: FlashMessagesService,
-    public router: Router, public schoolService: SchoolService
+    public router: Router, public schoolService: SchoolService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
+    this.checkSession();
   }
 
+  checkSession(){
+    this.loginService.checkSession().subscribe(
+      result => {
+        this.loggedIn = true;
+      },
+      error => {
+        this.loggedIn = false;
+      }
+    );
+  }
   onSubmit({ value, valid }: { value: School, valid: boolean }) {
     if (!valid) {
       // console.log('onSubmit error');

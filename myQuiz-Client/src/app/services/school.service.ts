@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class SchoolService {
-  private apiUrl = AppConst.serverPath + 'school';
+  private apiUrl = AppConst.serverApiPath + 'school';
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private options = { headers: this.headers };
   constructor(private http: Http) { }

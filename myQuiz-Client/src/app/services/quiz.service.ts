@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class QuizService {
-    private apiUrl = AppConst.serverPath + 'quiz';
+    private apiUrl = AppConst.serverApiPath + 'quiz';
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = { headers: this.headers };
     // quizzes: Observable<any[]>;

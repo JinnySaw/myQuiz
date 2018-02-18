@@ -4,6 +4,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router,ActivatedRoute, Params } from '@angular/router';
 import { QuizService } from '../../services/quiz.service';
 import 'rxjs/add/operator/toPromise';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-edit-quiz',
@@ -12,22 +13,34 @@ import 'rxjs/add/operator/toPromise';
 })
 export class EditQuizComponent implements OnInit {
 
+  private loggedIn = false;
   private id: number;
   private quiz: Quiz = new Quiz();
   private quizUpdated: boolean;
 
   constructor(private flashMessagesService:FlashMessagesService,
     private router:Router,public quizService:QuizService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,private loginService: LoginService
   ) { }
 
   ngOnInit() {
+    this.checkSession();
     this.id = this.route.snapshot.params['id'];
     
     this.quizService.getQuizById(this.id).then(quiz=>{
       this.quiz = quiz;
     }) 
     
+  }
+  checkSession(){
+    this.loginService.checkSession().subscribe(
+      result => {
+        this.loggedIn = true;
+      },
+      error => {
+        this.loggedIn = false;
+      }
+    );
   }
   onSubmit({value,valid}:{value:Quiz,valid:boolean}){
     var flashMessagesService = this.flashMessagesService;

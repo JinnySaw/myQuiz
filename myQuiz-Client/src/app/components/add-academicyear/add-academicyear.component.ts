@@ -7,28 +7,41 @@ import 'rxjs/add/operator/toPromise';
 import { School } from '../../models/school';
 import {SchoolService } from '../../services/school.service';
 import { Observable } from 'rxjs/Observable';
-
+import { LoginService } from '../../services/login.service'; 
 @Component({
   selector: 'app-add-academicyear',
   templateUrl: './add-academicyear.component.html',
   styleUrls: ['./add-academicyear.component.css']
 })
 export class AddAcademicyearComponent implements OnInit {
-
- academicyear : AcademicYear={
+  private loggedIn = false;
+ private academicAdded : boolean
+ private academicyear : AcademicYear={
   id:0,
   academicname:'',
   year:'',
   school_id:0
  }  
 private schools: Observable<School[]>;
-  constructor(public flashMessagesService: FlashMessagesService,
-    public router: Router, public academicService: AcademicyearService,
-    public schoolService: SchoolService
+  constructor(private flashMessagesService: FlashMessagesService,
+    private router: Router, private academicService: AcademicyearService,
+    private schoolService: SchoolService, private loginService: LoginService
   ) { }
 
   ngOnInit() {
+    this.checkSession();
+    this.academicAdded = false;
     this.getAllSchools();
+  }
+  checkSession(){
+    this.loginService.checkSession().subscribe(
+      result => {
+        this.loggedIn = true;
+      },
+      error => {
+        this.loggedIn = false;
+      }
+    );
   }
   getAllSchools() {
     this.schools = this.schoolService.getAllSchool();
@@ -45,7 +58,7 @@ private schools: Observable<School[]>;
      // value.
       // this.academicyear.academicname = value.academicname;
       // this.academicyear.year = value.year;
-
+      this.academicAdded = true;
        this.academicService.newAcademic(value);  
       this.flashMessagesService.show('New Academic Added', { cssClass: 'alert-success', timeout: 4000 });
 

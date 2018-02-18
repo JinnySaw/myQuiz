@@ -4,22 +4,34 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { QuizService } from '../../services/quiz.service';
 import 'rxjs/add/operator/toPromise';
-
+import { LoginService } from '../../services/login.service';
 @Component({
   selector: 'app-add-quiz',
   templateUrl: './add-quiz.component.html',
   styleUrls: ['./add-quiz.component.css']
 })
 export class AddQuizComponent implements OnInit {
-
-  quiz = new Quiz;
-  constructor(public flashMessagesService:FlashMessagesService,
-    public router:Router,public quizService:QuizService,
+  private loggedIn = false;
+  private quiz = new Quiz;
+  constructor(private flashMessagesService:FlashMessagesService,
+    private router:Router,public quizService:QuizService,
+    private loginService: LoginService
     ) { }
 
   ngOnInit() {
+    this.checkSession();
   }
 
+  checkSession(){
+    this.loginService.checkSession().subscribe(
+      result => {
+        this.loggedIn = true;
+      },
+      error => {
+        this.loggedIn = false;
+      }
+    );
+  }
   onSubmit({value,valid}:{value:Quiz,valid:boolean}){
     if(!valid){
       // console.log('onSubmit error');

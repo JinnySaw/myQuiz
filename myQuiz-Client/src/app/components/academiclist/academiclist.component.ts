@@ -5,6 +5,7 @@ import { MatTableDataSource, MatSort, MatSortable ,MatPaginator} from '@angular/
 import { AcademicYear } from '../../models/academicyear';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Params, ActivatedRoute, Router } from '@angular/router';
+import { LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'app-academiclist',
@@ -12,6 +13,7 @@ import { Params, ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./academiclist.component.css']
 })
 export class AcademiclistComponent implements OnInit { 
+  private loggedIn = false;
   dataSource;
   displayedColumns = ['#','academicname', 'year', 'school','actions'];//,'Status'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -20,18 +22,26 @@ export class AcademiclistComponent implements OnInit {
 
   constructor(private academicyearService: AcademicyearService,
   private flashMessagesService: FlashMessagesService,
-    private router: Router
+    private router: Router, private loginService: LoginService
 ) { }
 
   ngOnInit() { 
     
+    this.loginService.checkSession().subscribe(
+      result => {
+        this.loggedIn = true;
+      },
+      error => {
+        this.loggedIn = false;
+      }
+    );
+
     this.dataSource = null;
     this.academicyearService.getAllAcademic().subscribe(results => {
       if (!results) {
         return;
       }
-      console.log(results);
-
+      console.log(results); 
       this.dataSource = new MatTableDataSource(results);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;

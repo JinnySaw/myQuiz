@@ -5,6 +5,9 @@ import { Http } from '@angular/http';
 import { AcademicyearService } from '../../services/academicyear.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Observable } from 'rxjs/Observable'; 
+import {AppConst} from '../../constants/app-const';
+import { LoginService } from '../../services/login.service';
+
 
 @Component({
   selector: 'app-academicyear',
@@ -13,16 +16,34 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AcademicyearComponent implements OnInit {
 
+  private loggedIn = false;
+  private serverApiPath = AppConst.serverApiPath;
+  private dataFetched = false;
+  private loginError: boolean; 
+  private credential={'username':'','password':''}
   private academicyears: Observable<any[]>;
   
   constructor(private academicyearService: AcademicyearService,
     private router: Router,
     private http: Http,
-    private flashMessagesService: FlashMessagesService
+    private flashMessagesService: FlashMessagesService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
+
+    this.checkSession();
     this.getAllAcademic();
+  }
+  checkSession(){
+    this.loginService.checkSession().subscribe(
+      result => {
+        this.loggedIn = true;
+      },
+      error => {
+        this.loggedIn = false;
+      }
+    );
   }
   getAllAcademic(){
     console.log("get all Academic");

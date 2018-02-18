@@ -23,8 +23,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { QuizService } from './services/quiz.service';
 import { LoginService } from './services/login.service';
 import { SchoolService } from './services/school.service';
-import { AcademicyearService } from './services/academicyear.service';
-
+import { AcademicyearService } from './services/academicyear.service'; 
 
 import { SchoolsComponent } from './components/schools/schools.component';
 import { AddSchoolComponent } from './components/add-school/add-school.component';
@@ -33,33 +32,7 @@ import { AcademicyearComponent } from './components/academicyear/academicyear.co
 import { AddAcademicyearComponent } from './components/add-academicyear/add-academicyear.component'; 
 import { AcademiclistComponent } from './components/academiclist/academiclist.component';
 import { EditAcademicComponent } from './components/edit-academic/edit-academic.component';
-
-const appRoutes: Routes = [
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
-  // School
-  { path: 'school', component: SchoolsComponent },
-  { path: 'add-school', component: AddSchoolComponent },
-  { path: 'edit-school/:id', component: EditSchoolComponent },
-
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-
-  // Academic
-  { path: 'academic', component: AcademicyearComponent },
-  { path: 'academiclist', component: AcademiclistComponent },
-  { path: 'add-academic', component: AddAcademicyearComponent },
-  { path: 'edit-academic/:id', component: EditAcademicComponent },
-
-  // Quiz
-  { path: 'quiz', component: QuizListComponent },
-  { path: 'add-quiz', component: AddQuizComponent },
-  { path: 'edit-quiz/:id', component: EditQuizComponent }
-]
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -86,7 +59,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     // import RouterModule and parse in our appRoute
-    RouterModule.forRoot(appRoutes),
+    //RouterModule.forRoot(appRoutes),
+    routing,
     HttpModule,
     FormsModule,
     FlashMessagesModule.forRoot(),

@@ -12,31 +12,31 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService) { }
 
   onSubmit(){
-    // this.loginService.sendCredential(this.credential.username,this.credential.password).subscribe(
-    //  result =>{
-    //   console.log(result);
-    //   localStorage.setItem("xAuthToken",result.json().token);
-    //   this.loggedIn = true;
-    //    location.reload();
-    //  },
-    //  error =>{
-    //     console.log(error);
+    this.loginService.sendCredential(this.credential.username,this.credential.password).subscribe(
+     result =>{
+      console.log(result);
+      localStorage.setItem("xAuthToken",result.json().token);
+      this.loggedIn = true;
+       location.reload();
+     },
+     error =>{
+        console.log(error);
         
-    //  }
-    // );
+     }
+    );
   }
 
 
   ngOnInit() { 
-  this.loggedIn = true; // need to comment this after remove Session commented
-    // this.loginService.checkSession().subscribe(
-    //   result => {
-    //     this.loggedIn = true;
-    //   },
-    //   error => {
-    //     this.loggedIn = false;
-    //   }
-    // );
+  
+    this.loginService.checkSession().subscribe(
+      result => {
+        this.loggedIn = true;
+      },
+      error => {
+        this.loggedIn = false;
+      }
+    );
   }
 
 }
