@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-sm-6">
+      <a class="btn btn-link" routerLink="/academiclist">
+        <i class="fa fa-arrow-circle-o-left"> Back To Dashboard</i>
+      </a>
+    </div>
+    <div class="col-sm-6"></div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      Edit Academic
+    </div>
+    <div class="card-block">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  
+       
+          <!-- <label for="school_id">Select School</label> -->
+         
+          <!-- <select class="form-control" id="schoolid" ngModel= {{schools[0]?.id}} name = "school_id" >
+            <option *ngFor="let school of schools | async" value= {{school.id}} [selected]="school.id == academic.school.id">{{school.schoolname}}</option>
+          </select>
+          <select class="form-control" id="schoolid" [(ngModel)]="school" name = "school_id" >
+            <option *ngFor="let school of schools | async" value= {{school.id}} [selected]="school.id == academic.school.id">{{school.schoolname}}</option>
+          </select> -->
+
+          <!-- FInal -->
+          <!-- <label for="school">Choose School</label>
+          <select placeholder="Choose School"  id="name" class="form-control" name="school_id" [(ngModel)]="school.schoolname" required="required">
+             
+            <option *ngFor="let sch of schools | async" [selected]="sch.id == school.id">{{sch.schoolname}}</option>
+          </select> -->
+
+<!--          
+          <mat-form-field>
+            <mat-select placeholder="Choose School" [(ngModel)]="schoolname" name="schoolname">
+              <mat-option *ngFor="let school of schools | async" [value]="school.id">
+                {{school.schoolname}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+            
+           <!-- <mat-form-field>
+              <mat-select placeholder="Choose School" [(ngModel)]= "school.schoolname" name="schoolname" required="required">
+                <mat-option *ngFor="let sch of schools | async" [value]="sch.id" mySelect.value="school.schoolname" [selected]="sch.id == school.id">
+                  {{sch.schoolname}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>   -->
+            <div class="form-group">
+            <label for="school">Choose School</label>
+            <select placeholder="Choose School"  id="name" class="form-control" name="school_id" [(ngModel)]="school.id" required="required">
+              <option *ngFor="let sch of schools | async" [selected]="sch.id == school.id" value= {{sch.id}}>{{sch.schoolname}}</option>
+            </select>
+        
+        </div>
+        <div class="form-group">
+          <label for="Year">Year</label>
+          <input type="text" class="form-control" [(ngModel)]="academicYear.year" name="year" #year="ngModel"
+            minlength="2" required>
+          <div *ngIf="year.errors?.required && year.touched" class="alert alert-danger">
+            Year is required
+          </div>
+          
+        </div>
+        
+        <div class="form-group">
+          <label for="Academic">Academic Name</label>
+          <input type="text" class="form-control" [(ngModel)]="academicYear.academicname" name="academicname" #academicName="ngModel"
+            minlength="2" required>
+          <div *ngIf="academicName.errors?.required && academicName.touched" class="alert alert-danger">
+            Academic Name is required
+          </div>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary">
+      </form>
+    </div>
+  </div>

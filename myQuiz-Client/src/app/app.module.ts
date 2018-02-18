@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { FlashMessagesModule } from 'angular2-flash-messages';
+import { FlashMessagesModule } from 'angular2-flash-messages'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
@@ -21,10 +23,16 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { QuizService } from './services/quiz.service';
 import { LoginService } from './services/login.service';
 import { SchoolService } from './services/school.service';
+import { AcademicyearService } from './services/academicyear.service';
+
 
 import { SchoolsComponent } from './components/schools/schools.component';
 import { AddSchoolComponent } from './components/add-school/add-school.component';
-import { EditSchoolComponent } from './components/edit-school/edit-school.component'; 
+import { EditSchoolComponent } from './components/edit-school/edit-school.component';
+import { AcademicyearComponent } from './components/academicyear/academicyear.component';
+import { AddAcademicyearComponent } from './components/add-academicyear/add-academicyear.component'; 
+import { AcademiclistComponent } from './components/academiclist/academiclist.component';
+import { EditAcademicComponent } from './components/edit-academic/edit-academic.component';
 
 const appRoutes: Routes = [
   {
@@ -33,12 +41,19 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   // School
-  { path: 'school', component: SchoolsComponent},
-  { path: 'add-school',component: AddSchoolComponent},
-  { path: 'edit-school/:id', component: EditSchoolComponent}, 
+  { path: 'school', component: SchoolsComponent },
+  { path: 'add-school', component: AddSchoolComponent },
+  { path: 'edit-school/:id', component: EditSchoolComponent },
+
   { path: 'dashboard', component: DashboardComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+
+  // Academic
+  { path: 'academic', component: AcademicyearComponent },
+  { path: 'academiclist', component: AcademiclistComponent },
+  { path: 'add-academic', component: AddAcademicyearComponent },
+  { path: 'edit-academic/:id', component: EditAcademicComponent },
 
   // Quiz
   { path: 'quiz', component: QuizListComponent },
@@ -62,6 +77,11 @@ const appRoutes: Routes = [
     SchoolsComponent,
     AddSchoolComponent,
     EditSchoolComponent,
+    AcademicyearComponent,
+    AddAcademicyearComponent,
+    EditAcademicComponent,
+    AcademiclistComponent,
+    EditAcademicComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,12 +89,15 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpModule,
     FormsModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [
     QuizService,
     LoginService,
-    SchoolService
+    SchoolService,
+    AcademicyearService
   ],
   bootstrap: [AppComponent]
 })

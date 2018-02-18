@@ -16,20 +16,19 @@ export class SchoolsComponent implements OnInit {
   constructor(private schoolService: SchoolService,
     private router: Router,
     private http: Http,
-  private flashMessagesService:FlashMessagesService
-) { }
+    private flashMessagesService: FlashMessagesService
+  ) { }
 
   ngOnInit() {
-  this.getAllSchools();
+    this.getAllSchools();
   }
 
   getAllSchools() {
-    // console.log('list');
-   this.schools = this.schoolService.getAllSchool();
-   
+    this.schools = this.schoolService.getAllSchool();
+
   }
-  onDeleteClick(id:number){
-    if(confirm("Are you sure to delete?")){
+  onDeleteClick(id: number) {
+    if (confirm("Are you sure to delete?")) {
       this.schoolService.deleteSchool(id);
       this.flashMessagesService.show("School Deleted", { cssClass: 'alert-success', timeout: 4000 });
       this.router.navigate(['/school']);

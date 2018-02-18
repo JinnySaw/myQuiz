@@ -1,0 +1,61 @@
+<div class="container">
+  <div>
+    <div class="row">
+      <div class="col-sm-12">
+        <section>
+          <header class="header">
+            <div class="row">
+              <div class="col-sm-10">
+                <h1>Academic Year</h1>
+              </div>
+
+              <div class="col-sm-2">
+
+                <a routerLink="/add-academic" class="btn btn-primary pull-right">
+                  <i class="fa fa-plus"></i> Add New</a>
+              </div>
+            </div>
+
+          </header>
+        </section>
+ 
+        <section class="main">
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Academic Name</th>
+                <th>Year</th>
+                <th>School</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let academic of academicyears | async">
+                <th scope="row">{{ academic.id }}</th>
+                <td>{{ academic.academicname }}</td>
+                <td> {{ academic.year }} </td>
+                <td>{{ academic.school.schoolname }}</td>
+                <td>
+                  <div class="btn-group pull-right">
+                     
+                    <a [routerLink]="['/edit-academic/'+ academic.id]" class="btn btn-secondary">
+                      <i class="fa fa-pencil-square-o"></i>
+                    </a>
+                    <button type="button" class="btn btn-danger" (click)="onDeleteClick(academic.id)">
+                      <i class="fa 
+                    Search Results
+                    fa-trash-o"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

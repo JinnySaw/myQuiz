@@ -26,7 +26,7 @@ export class EditQuizComponent implements OnInit {
     
     this.quizService.getQuizById(this.id).then(quiz=>{
       this.quiz = quiz;
-    })
+    }) 
     
   }
   onSubmit({value,valid}:{value:Quiz,valid:boolean}){

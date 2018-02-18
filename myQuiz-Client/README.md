@@ -63,3 +63,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 19. add "../node_modules/font-awesome/css/font-awesome.css", above bootstarp to the Style:[] of .angular-cli.json file
 20. run npm install angular2-flash-messages --save
 21. Add <flash-messages></flash-messages> to app.component.html file above router-outlet tag 
+

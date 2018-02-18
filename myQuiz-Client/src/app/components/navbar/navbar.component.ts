@@ -13,25 +13,25 @@ export class NavbarComponent implements OnInit {
   private router: Router) { }
 
   ngOnInit() {
-    this.loginService.checkSession().subscribe(
-      result => {
-        this.loggedIn = true;
-      },
-      error => {
-        this.loggedIn = false;
-      }
-    );
+    // this.loginService.checkSession().subscribe(
+    //   result => {
+    //     this.loggedIn = true;
+    //   },
+    //   error => {
+    //     this.loggedIn = false;
+    //   }
+    // );
   }
   logout(){
-    this.loginService.logout().subscribe(
-      result =>{
-        location.reload();
-      },
-      error=>{
-        console.log(error);
+    // this.loginService.logout().subscribe(
+    //   result =>{
+    //     location.reload();
+    //   },
+    //   error=>{
+    //     console.log(error);
         
-      }
-    );
+    //   }
+    // );
     this.router.navigate(['/']);
   }
 

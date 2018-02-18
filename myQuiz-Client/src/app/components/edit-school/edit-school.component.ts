@@ -25,7 +25,7 @@ export class EditSchoolComponent implements OnInit {
     
     this.schoolService.getSchoolById(this.id).then(school=>{
       this.school = school;
-    })
+    });
     
   }
   onSubmit({value,valid}:{value:School,valid:boolean}){
@@ -37,7 +37,9 @@ export class EditSchoolComponent implements OnInit {
       this.router.navigate(['edit-school/'+ this.id]);
     }
     else{
-      this.schoolService.updateSchool(this.id,value);
+      
+      
+       this.schoolService.updateSchool(this.id,value);
        this.flashMessagesService.show('School Updated',{cssClass:'alert-success',timeout:4000});
       
       this.router.navigate(['/school']);

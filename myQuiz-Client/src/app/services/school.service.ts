@@ -25,14 +25,13 @@ export class SchoolService {
   }
 
   newSchool(school: School): Promise<School> {
-    console.log(school);
-    console.log(this.apiUrl);
-    
+   
     return this.http.post(this.apiUrl, JSON.stringify(school), this.options).toPromise()
       .then(res => res.json() as School)
       .catch(this.handleError);
   }
   updateSchool(id: number, school: School) {
+   
     return this.http.put(this.apiUrl + '/' + id, JSON.stringify(school), this.options).toPromise()
       .then(res => res.json() as School)
       .catch(this.handleError);
