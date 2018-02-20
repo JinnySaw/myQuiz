@@ -3,7 +3,8 @@
  */
 package com.jinnysaw.myQuiz.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+//import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.jinnysaw.myQuiz.models.Quiz;
@@ -13,6 +14,6 @@ import com.jinnysaw.myQuiz.models.Quiz;
  *
  */
 @Repository
-public interface QuizRepository extends JpaRepository<Quiz,Long>{
+public interface QuizRepository extends CrudRepository<Quiz,Long>{
 	
 }

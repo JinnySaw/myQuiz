@@ -9,6 +9,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +38,9 @@ public class QuizController {
 	// The @GetMapping("/") annotation is a short form of @RequestMapping(value="/notes", method=RequestMethod.GET).
 	@GetMapping("/quiz")
 	public List<Quiz> getAllQuiz(){
-		return quizRepository.findAll();
+		System.out.println("Get All Quizzes");
+		return (List<Quiz>) quizRepository.findAll();
+		
 	}
 	
 	// Create a new Quiz
@@ -73,12 +77,15 @@ public class QuizController {
 		
 		quiz.setTitle(quizDetails.getTitle());
 		quiz.setDescription(quizDetails.getDescription());
+		//quiz.setCreatedAt(quizDetails.getCreatedAt());
+		quiz.setUpdatedAt(quizDetails.getUpdatedAt());
 		Quiz updateQuiz = quizRepository.save(quiz);
 		return ResponseEntity.ok(updateQuiz);
 		
 	}
 	
 	// Delete a Quiz
+	@DeleteMapping("/quiz/{id}")
 	public ResponseEntity<Quiz> deleteQuiz(@PathVariable(value="id") Long quizId){
 		Quiz quiz = quizRepository.findOne(quizId);
 		if(quiz == null){
