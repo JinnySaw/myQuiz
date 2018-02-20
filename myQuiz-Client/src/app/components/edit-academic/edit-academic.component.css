@@ -1,0 +1,11 @@
+.mat-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mat-container > * {
+    width: 100%;
+  }
+  .mat-card {
+    max-width: 500px;
+  }

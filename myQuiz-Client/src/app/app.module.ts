@@ -2,10 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
-import { FlashMessagesModule } from 'angular2-flash-messages'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MaterialModule } from './material.module';
+import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { QuizListComponent } from './components/quiz-list/quiz-list.component';
@@ -23,16 +23,20 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { QuizService } from './services/quiz.service';
 import { LoginService } from './services/login.service';
 import { SchoolService } from './services/school.service';
-import { AcademicyearService } from './services/academicyear.service'; 
+import { AcademicyearService } from './services/academicyear.service';
+import { TeacherService } from './services/teacher.service';
 
 import { SchoolsComponent } from './components/schools/schools.component';
 import { AddSchoolComponent } from './components/add-school/add-school.component';
 import { EditSchoolComponent } from './components/edit-school/edit-school.component';
 import { AcademicyearComponent } from './components/academicyear/academicyear.component';
-import { AddAcademicyearComponent } from './components/add-academicyear/add-academicyear.component'; 
+import { AddAcademicyearComponent } from './components/add-academicyear/add-academicyear.component';
 import { AcademiclistComponent } from './components/academiclist/academiclist.component';
 import { EditAcademicComponent } from './components/edit-academic/edit-academic.component';
 import { routing } from './app.routing';
+import { TeachersComponent } from './components/teachers/teachers.component';
+import { AddTeacherComponent } from './components/add-teacher/add-teacher.component';
+import { EditTeacherComponent } from './components/edit-teacher/edit-teacher.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +59,9 @@ import { routing } from './app.routing';
     EditAcademicComponent,
     AcademiclistComponent,
     EditAcademicComponent,
+    TeachersComponent,
+    AddTeacherComponent,
+    EditTeacherComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +70,7 @@ import { routing } from './app.routing';
     routing,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     FlashMessagesModule.forRoot(),
     MaterialModule,
     BrowserAnimationsModule
@@ -71,7 +79,8 @@ import { routing } from './app.routing';
     QuizService,
     LoginService,
     SchoolService,
-    AcademicyearService
+    AcademicyearService,
+    TeacherService
   ],
   bootstrap: [AppComponent]
 })

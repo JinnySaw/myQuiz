@@ -1,13 +1,18 @@
 <div class="container" [hidden]="!loggedIn">
 <div [hidden] ="academicAdded"> 
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
     <a class="btn btn-link" routerLink="/academic">
       <i class="fa fa-arrow-circle-o-left"> Back To Dashboard</i>
     </a>
   </div>
-  <div class="col-sm-6"></div>
+  <div class="col-sm-2"></div>
 </div>
+
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
 <div class="card">
   <div class="card-header">
     Add Academic
@@ -18,16 +23,24 @@
       <div class="form-group">
         <label for="school_id">Select School</label>
        
-        <select class="form-control" id="schoolid" ngModel= {{schools[0]?.id}} name = "school_id">
+        <!-- <select  class="form-control" id="schoolid" ngModel= {{schools[0]?.id}} name = "school_id">
+            <option value="">-- School --</option> 
           <option *ngFor="let school of schools | async" value= {{school.id}}>{{school.schoolname}}</option>
-        </select>
+        </select> -->
+        <!-- [(ngModel)]="school.schoolname" -->
 
+        <select  class="form-control" id="schoolid" ngModel= {{schools[0]?.id}} name = "school_id" #schoolControl="ngModel" required>
+            <!-- <option value="">-- School --</option>  -->
+          <option *ngFor="let school of schools | async" value= {{school.id}}>{{school.schoolname}}</option>
+          <div  *ngIf="schoolControl.errors?.required && schoolControl.touched" class="alert alert-danger">Please choose school</div>
+        </select>
         <!-- <label for="school">* School</label>
         <select id="name" class="form-control" name="schoolname" [(ngModel)]="school" required="required">
           <option value="" disabled>-- school --</option> 
           <option *ngFor="let school of schools | async">{{school.schoolname}}</option>
         </select> -->
       </div>
+
       <div class="form-group">
         <label for="Year">Year</label>
         <input type="text" class="form-control" [(ngModel)]="academicyear.year" name="year" #year="ngModel"
@@ -37,6 +50,25 @@
         </div>
         
       </div>
+
+      <!-- <mat-form-field>
+        <mat-select placeholder="Favorite school"  [formControl]="schoolControl" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let sch of schools | async" [value]="sch">
+            {{sch.schoolname}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="schoolControl.hasError('required')">Please choose an school</mat-error>
+        <mat-hint>{{schoolControl.value?.sound}}</mat-hint>
+      </mat-form-field> -->
+      <!-- <mat-form-field>
+        <mat-select placeholder="Choose school" [(ngModel)]="school.id" name="school">
+          <mat-option *ngFor="let sch of schools | async" [value]="sch.value">
+            {{sch.schoolname}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+    
       
       <div class="form-group">
         <label for="Academic">Academic Name</label>
@@ -50,5 +82,8 @@
     </form>
   </div>
 </div>
+</div> 
+<div class="col-sm-2"></div>
 </div>
 </div>
+</div> 

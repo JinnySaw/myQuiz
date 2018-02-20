@@ -17,6 +17,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { TeachersComponent} from './components/teachers/teachers.component';
+
+import { AddTeacherComponent } from './components/add-teacher/add-teacher.component';
+import { EditTeacherComponent } from './components/edit-teacher/edit-teacher.component';
 
 const appRoutes: Routes = [
     {
@@ -38,6 +42,11 @@ const appRoutes: Routes = [
     { path: 'academiclist', component: AcademiclistComponent },
     { path: 'add-academic', component: AddAcademicyearComponent },
     { path: 'edit-academic/:id', component: EditAcademicComponent },
+
+    // Teachers 
+    { path: 'teachers', component: TeachersComponent },
+    { path: 'add-teacher', component: AddTeacherComponent },
+    { path: 'edit-teacher/:id', component: EditTeacherComponent },
   
     // Quiz
     { path: 'quiz', component: QuizListComponent },

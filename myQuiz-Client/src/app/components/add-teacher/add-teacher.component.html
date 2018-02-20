@@ -1,0 +1,82 @@
+<div class="container" [hidden]="!loggedIn">
+  <div [hidden] ="teacherAdded"> 
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <a class="btn btn-link" routerLink="/teacher">
+        <i class="fa fa-arrow-circle-o-left"> Back To Dashboard</i>
+      </a>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+  <div class="card">
+    <div class="card-header">
+      Add Teacher
+    </div>
+    <div class="card-block">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  
+
+        <div class="form-group">
+          <label for="Teacher">Teacher Name</label>
+          <input type="text" class="form-control" [(ngModel)]="teacher.teachername" name="teachername" #teacherName="ngModel"
+            minlength="2" required>
+          <div *ngIf="teacherName.errors?.required && teacherName.touched" class="alert alert-danger">
+            Teacher Name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone No.</label>
+          <input type="text" class="form-control" [(ngModel)]="teacher.phonenumber" name="phonenumber" #phone="ngModel"
+            minlength="2" required>
+          <div *ngIf="phone.errors?.required && phone.touched" class="alert alert-danger">
+            Phone number is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" [(ngModel)]="teacher.email" name="email" #email="ngModel"
+            minlength="2" required>
+          <div *ngIf="email.errors?.required && email.touched" class="alert alert-danger">
+            Email is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Address">Address</label>
+          <input type="text" class="form-control" [(ngModel)]="teacher.address" name="address" #address="ngModel"
+            minlength="2" required>
+          <div *ngIf="address.errors?.required && address.touched" class="alert alert-danger">
+            Email is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="school">Choose School</label>
+          <select placeholder="Choose School"  id="name" class="form-control" name="school_id"  required="required">
+            <option *ngFor="let sch of schools | async"  value= {{sch.id}}>{{sch.schoolname}}</option>
+          </select>
+      
+      </div>
+        <!-- <div class="form-group">
+          <label for="school_id">Select School</label>
+         
+          <select  class="form-control" id="schoolid" ngModel= {{schools[0]?.id}} name = "school_id" #schoolControl="ngModel" required>
+              <option value="">-- School --</option> 
+            <option *ngFor="let school of schools | async" value= {{school.id}}>{{school.schoolname}}</option>
+            <div  *ngIf="schoolControl.errors?.required && schoolControl.touched" class="alert alert-danger">Please choose school</div>
+          </select>
+        
+        </div>  -->
+        <input type="submit" value="Submit" class="btn btn-primary">
+      </form>
+    </div>
+  </div>
+  </div> 
+  <div class="col-sm-2"></div>
+  </div>
+  </div>
+  </div> 

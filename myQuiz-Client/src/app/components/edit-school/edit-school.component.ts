@@ -53,7 +53,8 @@ export class EditSchoolComponent implements OnInit {
     else{ 
        this.schoolService.updateSchool(this.id,value);
        this.flashMessagesService.show('School Updated',{cssClass:'alert-success',timeout:4000});
-      
+        console.log(value);
+        
       this.router.navigate(['/school']);
     }
 
